@@ -9,26 +9,45 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import Note from './src/components/Note';
+
 export default class App extends Component {
+  state = {
+    noteArray: [{'date':'Jan 15', 'note':'Hmm'}],
+    noteText: '',
+  }
   render() {
+
+    let notes = this.state.noteArray.map((val,key) => {
+      return <Note key={key} keyval={key} val={val} deleteMethod= { ()=>this.deleteNote(key)} />
+    });
+
     return (
+
       <View style={styles.container}>
 
         <View style={styles.header}>
           <Text style={styles.headerText}>- ROGUE TO DO APP -</Text>
         </View>
 
+        <ScrollView style={styles.scrollContainer}>
+          {notes}
+        </ScrollView>
+
         <View style={styles.footer}>
 
-          <TouchableOpacity style={styles.addButton}>
+          <TouchableOpacity
+            onPress={this.addNote.bind(this)}
+            style={styles.addButton}>
             <Text style={styles.addButtonText}>+</Text>
           </TouchableOpacity>
 
           <TextInput
             style={styles.textInput}
+            onChangeText={(noteText) => this.setState({noteText})} value={this.state.noteText}
             placeholder='> note'
             placeholderTextColor='black'
-            >
+          >
           </TextInput>
 
         </View>
@@ -36,6 +55,11 @@ export default class App extends Component {
       </View>
     );
   }
+
+  addNote(){
+    alert(this.state.noteText)
+  }
+
 }
 
 const styles = StyleSheet.create({
