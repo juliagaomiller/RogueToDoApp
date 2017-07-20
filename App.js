@@ -46,7 +46,7 @@ export default class App extends Component {
             style={styles.textInput}
             onChangeText={(noteText) => this.setState({noteText})} value={this.state.noteText}
             placeholder='> note'
-            placeholderTextColor='black'
+            placeholderTextColor='grey'
           >
           </TextInput>
 
@@ -57,7 +57,17 @@ export default class App extends Component {
   }
 
   addNote(){
-    alert(this.state.noteText)
+    if (this.state.noteText) {
+      var d = new Date();
+      this.state.noteArray.push( {'date': d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate(), 'note': this.state.noteText});
+      this.setState({ noteArray: this.state.noteArray });
+      this.setState({ noteText: '' });
+    }
+  }
+
+  deleteNote(key){
+    this.state.noteArray.splice(key,1);
+    this.setState({noteArray: this.state.noteArray});
   }
 
 }
@@ -96,7 +106,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 50,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: '#ededed',
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 8,
@@ -112,9 +122,9 @@ const styles = StyleSheet.create({
     color: 'black',
     padding: 20,
     paddingTop: 46,
-    backgroundColor: 'ghostwhite',
-    // borderTopWidth: 2,
-    // borderTopColor: '#ededed'
+    backgroundColor: 'white',
+    borderTopWidth: 2,
+    borderTopColor: '#ededed'
   }
 
 });

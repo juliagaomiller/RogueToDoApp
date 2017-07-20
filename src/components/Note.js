@@ -19,8 +19,8 @@ export default class App extends Component {
       <Text style={styles.noteText}>{this.props.val.date}</Text>
       <Text style={styles.noteText}>{this.props.val.note}</Text>
 
-      <TouchableOpacity onpress={this.props.deleteMethod} style={styles.noteDelete}>
-        <Text style={styles.noteDeleteText}>D</Text>
+      <TouchableOpacity onPress={this.props.deleteMethod} style={styles.noteDelete}>
+        <Text style={styles.noteDeleteText}>x</Text>
       </TouchableOpacity>
 
       </View>
@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     padding: 20,
     paddingRight: 100,
+    // borderTopWidth: 2,
+    // borderTopColor: '#ededed',
     borderBottomWidth: 2,
     borderBottomColor: '#ededed',
   },
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2980b9',
+    backgroundColor: 'white',
     padding: 10,
     top: 10,
     bottom: 10,
