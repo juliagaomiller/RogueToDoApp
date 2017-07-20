@@ -21,6 +21,4 @@ export default class RogueToDoApp extends Component {
   }
 }
 
-
-
 AppRegistry.registerComponent('RogueToDoApp', () => RogueToDoApp);
